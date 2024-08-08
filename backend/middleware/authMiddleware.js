@@ -6,7 +6,7 @@ exports.authenticateJWT = async (req, res, next) => {
   if (!token) return res.status(401).send('Access denied');
 
   try {
-    const decoded = jwt.verify(token, 'your_jwt_secret');
+    const decoded = jwt.verify(token, 'jwt_secret');
     req.user = await User.findById(decoded.id);
     if (!req.user) throw new Error();
     next();
